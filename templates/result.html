@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Diagnosis Result – Engine Diagnostics{% endblock %}
+
+{% block content %}
+<h2>Diagnosis result – Case #{{ case.id }}</h2>
+
+<div class="card">
+    <h3>Input</h3>
+    <p><strong>Engine type:</strong> {{ case.engine_type or "-" }}</p>
+    <p><strong>Symptoms:</strong><br>{{ case.symptoms|replace('\n', '<br>')|safe }}</p>
+
+    {% if case.image_filename %}
+        <p><strong>Attached image:</strong></p>
+        <img class="case-image" src="{{ url_for('uploaded_file', filename=case.image_filename) }}"
+             alt="Uploaded symptom image">
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>Possible causes & checks</h3>
+    <pre class="diagnosis-pre">{{ case.diagnosis }}</pre>
+</div>
+
+<a class="btn-primary" href="{{ url_for('dashboard') }}">Back to dashboard</a>
+{% endblock %}

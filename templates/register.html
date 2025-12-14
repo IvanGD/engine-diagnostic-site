@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Register – Engine Diagnostics{% endblock %}
+
+{% block content %}
+<h2>Register</h2>
+
+<form method="post" class="card form-card">
+    <label>
+        Username
+        <input type="text" name="username" required>
+    </label>
+
+    <label>
+        Password
+        <input type="password" name="password" required>
+    </label>
+
+    <button type="submit">Create account</button>
+
+    <p class="form-note">
+        Already have an account?
+        <a href="{{ url_for('login') }}">Log in here</a>.
+    </p>
+</form>
+{% endblock %}

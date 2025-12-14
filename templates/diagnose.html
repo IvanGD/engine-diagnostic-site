@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}New Diagnosis – Engine Diagnostics{% endblock %}
+
+{% block content %}
+<h2>New engine diagnosis</h2>
+
+<form method="post" enctype="multipart/form-data" class="card form-card">
+    <label>
+        Engine type (optional)
+        <input type="text" name="engine_type" placeholder="e.g. marine diesel 2-stroke">
+    </label>
+
+    <label>
+        Describe symptoms
+        <textarea name="symptoms" rows="6"
+                  placeholder="Example: black smoke on load, low power, knocking noise on cylinder 3..."
+                  required></textarea>
+    </label>
+
+    <label>
+        Attach photo (optional)
+        <input type="file" name="image" accept="image/*">
+    </label>
+
+    <button type="submit">Get possible causes</button>
+</form>
+{% endblock %}

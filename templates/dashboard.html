@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard – Engine Diagnostics{% endblock %}
+
+{% block content %}
+<h2>Your diagnostic cases</h2>
+
+<a class="btn-primary" href="{{ url_for('diagnose') }}">+ New diagnosis</a>
+
+{% if cases|length == 0 %}
+    <p>You have no cases yet. Create your first diagnosis.</p>
+{% else %}
+    <table class="cases-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Engine type</th>
+            <th>Symptoms</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in cases %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.engine_type or "-" }}</td>
+                <td>{{ c.symptoms[:60] }}{% if c.symptoms|length > 60 %}…{% endif %}</td>
+                <td>{{ c.created_at }}</td>
+                <td><a href="{{ url_for('view_result', case_id=c.id) }}">View</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}
